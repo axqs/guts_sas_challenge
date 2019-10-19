@@ -19,7 +19,7 @@ class ListPage extends StatefulWidget {
 class _ListPageState extends State<ListPage> {
 
 	//Remove this when finished app
-	List<ListItem> shoppingItems = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
+	static List<ListItem> shoppingItems;// = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
 	void clearAllList(){
 		shoppingItems.clear();
@@ -27,10 +27,12 @@ class _ListPageState extends State<ListPage> {
 
 	@override
 	Widget build(BuildContext context) {
-
+/*
 		ReadListFromFile("ShoppingList.json").then((loadedListItems) => {
 		shoppingItems = loadedListItems
 		});
+		*/
+
 
 		return Scaffold(
 			appBar: AppBar(
@@ -104,7 +106,9 @@ class _ListPageState extends State<ListPage> {
 				child: Icon(Icons.add),
 				onPressed: () {
 					print("add grocery");
-					Navigator.push(context,MaterialPageRoute(builder: (context) => AddPage(title: "Add To List")),);
+					Navigator.push(context,MaterialPageRoute(builder: (context) => AddPage(title: "Add To List")),).then((itemAdded) =>{
+						shoppingItems.add(itemAdded)
+					});
 				},
 			), // This trailing comma makes auto-formatting nicer for build methods.
 		);
