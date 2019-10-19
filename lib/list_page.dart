@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import './fridge_page.dart';
+import 'ListItem.dart';
+import 'ItemsList.dart';
 
 class ListPage extends StatefulWidget {
 	ListPage({Key key, this.title}) : super(key: key);
@@ -10,13 +12,9 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
-	int _counter = 0;
 
-	void _incrementCounter() {
-		setState(() {
-			_counter++;
-		});
-	}
+	//Remove this when finished app
+	List<ListItem> shoppingItems = List<ListItem>.generate(20, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
 	@override
 	Widget build(BuildContext context) {
@@ -58,24 +56,10 @@ class _ListPageState extends State<ListPage> {
 					],
 				),
 			),
-			body: Center(
-				// Center is a layout widget. It takes a single child and positions it
-				// in the middle of the parent.
-				child: Column(
-					mainAxisAlignment: MainAxisAlignment.center,
-					children: <Widget>[
-						Text(
-							'You have pushed the button this many times:',
-						),
-						Text(
-							'$_counter',
-							style: Theme.of(context).textTheme.display1,
-						),
-					],
-				),
+			body: ItemsList(
+				items:shoppingItems,
 			),
 			floatingActionButton: FloatingActionButton(
-				onPressed: _incrementCounter,
 				tooltip: 'Increment',
 				child: Icon(Icons.add),
 			), // This trailing comma makes auto-formatting nicer for build methods.
