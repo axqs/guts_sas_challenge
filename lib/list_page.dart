@@ -42,6 +42,14 @@ class _ListPageState extends State<ListPage> {
 
 	}
 
+	void moveSelectedItemstoFridge(){
+		for(ListItem item in shoppingItems){
+			if (item.selected){
+				shoppingItems.remove(item);
+			}
+		}
+	}
+
 	@override
 	Widget build(BuildContext context) {
 	/*if(readFile == false) {
@@ -120,8 +128,22 @@ class _ListPageState extends State<ListPage> {
 				),*/
 				new Expanded(
 				child:ItemsList(
-				items:globals.ShoppingItems,
-			))])),
+
+				iitems:globals.ShoppingItems,
+			)),
+				const SizedBox(height: 30),
+				RaisedButton(
+					onPressed: () {
+						setState(() {
+							moveSelectedItemstoFridge();
+						});
+					},
+					child: const Text(
+							'Move to Fridge',
+							style: TextStyle(fontSize: 20)
+					),
+				),
+			])),
 			floatingActionButton: FloatingActionButton(
 				tooltip: 'Increment',
 				child: Icon(Icons.add),
