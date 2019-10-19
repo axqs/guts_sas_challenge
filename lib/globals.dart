@@ -5,7 +5,7 @@ library guts_sas_challenge.globals;
 import 'ListItem.dart';
 
 
-List<ListItem> ShoppingList;
+List<ListItem> ShoppingItems;
 //bool isLoggedIn = false;
 /*
 class GlobalLists{

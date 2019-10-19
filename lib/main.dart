@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import './fridge_page.dart';
 import './list_page.dart';
+import 'globals.dart' as globals;
+import 'SaveAndLoad.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    ReadListFromFile("ShoppingList.json").then((loadedListItems) =>
+    {
+    globals.ShoppingItems = loadedListItems
+    });
+
     return MaterialApp(
       title: 'Grocery List',
       theme: ThemeData(
