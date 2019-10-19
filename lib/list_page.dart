@@ -6,6 +6,7 @@ import './add_page.dart';
 import 'ListItem.dart';
 import 'ItemsList.dart';
 
+import 'globals.dart' as globals;
 import 'SaveAndLoad.dart';
 
 class ListPage extends StatefulWidget {
@@ -20,7 +21,7 @@ class ListPage extends StatefulWidget {
 class _ListPageState extends State<ListPage> {
 
 	//Remove this when finished app
-	static List<ListItem> shoppingItems;
+	static List<ListItem> shoppingItems = globals.ShoppingList;
 	// = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
 	static bool readFile = false;

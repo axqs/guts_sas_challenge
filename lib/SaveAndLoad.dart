@@ -51,7 +51,7 @@ Future<List<FoodItem>> ReadListFromFileFoodItem(String filename) async {
   }
   catch (e) {
     // If encountering an error, return 0.
-    return new List<ListItem>();
+    return new List<FoodItem>();
   }
 }
 
