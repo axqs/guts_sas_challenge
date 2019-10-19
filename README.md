@@ -1,6 +1,6 @@
 # sas_grocery_list
 
-A new Flutter project.
+A flutter ap to track and remind you when your food goes off, to reduce food waste!
 
 ## Getting Started
 
