@@ -23,19 +23,38 @@ class _ListPageState extends State<ListPage> {
 	static List<ListItem> shoppingItems;
 	// = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
+	static bool readFile = false;
 
 	void clearAllList(){
-		shoppingItems.clear();
+		setState(() {
+			shoppingItems.clear();
+		});
+
+	}
+
+	void addItemAndSave(ListItem itemAdded){
+		shoppingItems.add(itemAdded);
+		SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
+		for(ListItem item in shoppingItems){
+			print(item.title);
+		}
+
 	}
 
 	@override
 	Widget build(BuildContext context) {
-		if(shoppingItems == null) { shoppingItems = new List<ListItem>();}
-/*
-		ReadListFromFile("ShoppingList.json").then((loadedListItems) => {
-		shoppingItems = loadedListItems
+
+	if(readFile == false) {
+		ReadListFromFile("ShoppingList.json").then((loadedListItems) =>
+		{
+			shoppingItems = loadedListItems
 		});
-		*/
+		print("ReadFile");
+		readFile = true;
+	}
+
+		if(shoppingItems == null) { shoppingItems = new List<ListItem>();}
+
 
 		return Scaffold(
 			appBar: AppBar(
@@ -109,8 +128,9 @@ class _ListPageState extends State<ListPage> {
 				child: Icon(Icons.add),
 				onPressed: () {
 					print("add grocery");
-					Navigator.push(context,MaterialPageRoute(builder: (context) => AddPage(title: "Add To List")),).then((itemAdded) =>{
-						shoppingItems.add(itemAdded)
+
+					Navigator.push(context,MaterialPageRoute(builder: (context) => AddPage(title: "Add To List")),).then((itemAdded) => {
+					addItemAndSave(itemAdded)
 					});
 				},
 			), // This trailing comma makes auto-formatting nicer for build methods.
