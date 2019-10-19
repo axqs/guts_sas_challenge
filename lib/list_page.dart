@@ -60,7 +60,7 @@ class _ListPageState extends State<ListPage> {
 				title: Text(widget.title),
 				actions: <Widget>[
 					IconButton(
-						icon: const Icon(Icons.clear),
+						icon: const Icon(Icons.delete),
 						tooltip: 'Clear all',
 						onPressed: () {
 							clearAllList();
