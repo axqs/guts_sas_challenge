@@ -28,8 +28,8 @@ class _ListPageState extends State<ListPage> {
 				title: Text(widget.title),
 					actions: <Widget>[
 			IconButton(
-			icon: const Icon(Icons.arrow_forward),
-			tooltip: 'Next choice',
+			icon: const Icon(Icons.clear),
+			tooltip: 'Clear all',
 			onPressed: () {
 				clearAllList();
 			},
