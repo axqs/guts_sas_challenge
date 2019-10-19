@@ -16,12 +16,16 @@ class _AddPageState extends State<AddPage> {
 	//Remove this when finished app
 	List<ListItem> shoppingItems = List<ListItem>.generate(20, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
-	final TextEditingController controller = new TextEditingController();
+	final TextEditingController textController = new TextEditingController();
 	String filter;
 
 	void dispose() {
-		controller.dispose();
+		textController.dispose();
 		super.dispose();
+	}
+
+	void addToList(){
+
 	}
 
 	@override
@@ -75,7 +79,26 @@ class _AddPageState extends State<AddPage> {
 									labelText: "Search Groceries",
 									helperText: "eg. Milk",
 								),
-							controller: controller,
+							controller: textController,
+							),
+						),
+
+						Expanded(
+							child: Container(
+								width: 100,
+							),
+						),
+						Align(
+							alignment: Alignment.bottomCenter,
+							child:
+							  RaisedButton(
+									onPressed: (){
+									Navigator.pop(context, ListItem(textController.text, DateTime.now()));
+								},
+								child: const Text(
+										'Add',
+										style: TextStyle(fontSize: 20)
+								),
 							),
 						),
 					],
