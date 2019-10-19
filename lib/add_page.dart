@@ -14,7 +14,9 @@ class AddPage extends StatefulWidget {
 
 class _AddPageState extends State<AddPage> {
 	//Remove this when finished app
-	List<ListItem> shoppingItems = List<ListItem>.generate(20, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
+	String LoadedData = await LoadData("./fooditems.json");
+	List<ListItem> foodList = json.decode(LoadedData).map((i) =>
+        ListItem.fromJson(i)).toList();
 
 	final TextEditingController textController = new TextEditingController();
 	String filter;
@@ -22,10 +24,6 @@ class _AddPageState extends State<AddPage> {
 	void dispose() {
 		textController.dispose();
 		super.dispose();
-	}
-
-	void addToList(){
-
 	}
 
 	@override

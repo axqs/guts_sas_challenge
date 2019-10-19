@@ -1,39 +1,37 @@
-fooditems = [
-    
     {
         "fooditem": "Butter",
-        "expiryindays": 17,
+        "days": 17,
     },
     {
-        "fooditem": "Fresh Apples",
-        "expiryindays": 21,
+        "fooditem": "Apples",
+        "days": 21,
     },
     {
         "fooditem": "Potatoes",
-        "expiryindays": 28,
+        "days": 28,
     },
     {
         "fooditem": "Cereal",
-        "expiryindays": 155,
+        "days": 155,
     },
     {
         "fooditem": "Frozen Pizza",
-        "expiryindays": 365,
+        "days": 365,
     },
     {
         "fooditem": "Flour",
-        "expiryindays": 217,
+        "days": 217,
     },
     {
-        "fooditem": "Fresh Chicken",
-        "expiryindays": 2,
+        "fooditem": "Raw Chicken",
+        "days": 2,
     },
     {
         "fooditem": "Cooked Chicken",
-        "expiryindays": 7,
+        "days": 7,
     },
     {
-        "fooditem": "Fresh Onions",
-        "expiryindays": 42,
+        "fooditem": "Onions",
+        "days": 42,
     },
 ]
