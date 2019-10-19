@@ -4,7 +4,7 @@ import 'ListItem.dart';
 class ItemsList extends StatefulWidget {
 
   final List<ListItem> items;
-  const ItemsList({ Key key, this.items, List<ListItem> selected}) : super(key: key);
+  const ItemsList({ Key key, this.items, bool InShopping = true}) : super(key: key);
 
   @override
   _ItemsList createState() => _ItemsList();

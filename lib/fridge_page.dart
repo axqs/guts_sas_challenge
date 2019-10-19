@@ -87,7 +87,7 @@ class _FridgePageState extends State<FridgePage> {
 				new Expanded(
 				child:ItemsList(
 				items:globals.FridgeItems,
-					//InShopping: false,
+					InShopping: false,
 			))])),
 		);
 	}
