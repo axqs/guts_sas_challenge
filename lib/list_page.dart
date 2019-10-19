@@ -151,7 +151,7 @@ class _ListPageState extends State<ListPage> {
 					print("add grocery");
 
 					Navigator.push(context,MaterialPageRoute(builder: (context) => AddPage(title: "Add To List")),).then((itemAdded) => {
-					if(itemAdded != null){
+					if(itemAdded != null && itemAdded.title != ""){
 						addItemAndSave(itemAdded)
 					}
 					});

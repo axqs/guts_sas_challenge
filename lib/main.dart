@@ -16,6 +16,10 @@ class MyApp extends StatelessWidget {
     {
     globals.ShoppingItems = loadedListItems
     });
+    ReadListFromFileFoodItem("fooditems.json").then((loadedListItems) =>
+    {
+      globals.FoodItems = loadedListItems
+    });
 
     return MaterialApp(
       title: 'Grocery List',

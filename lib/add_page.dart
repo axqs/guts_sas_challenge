@@ -73,6 +73,7 @@ class _AddPageState extends State<AddPage> {
 							padding: new EdgeInsets.all(20.0),
 
 							child: new TextField(
+								autofocus: true,
 								decoration: new InputDecoration(
 									labelText: "Search Groceries",
 									helperText: "eg. Milk",
@@ -86,19 +87,20 @@ class _AddPageState extends State<AddPage> {
 								width: 100,
 							),
 						),
-						Align(
-							alignment: Alignment.bottomCenter,
-							child:
-								RaisedButton(
-									onPressed: (){
-									Navigator.pop(context, ListItem(textController.text, DateTime.now()));
-								},
-								child: const Text(
-										'Add',
-										style: TextStyle(fontSize: 20)
-								),
-							),
-						),
+			Align(
+				alignment: Alignment.bottomCenter,
+				child: Container(
+					padding: const EdgeInsets.all(8),
+					width: MediaQuery.of(context).size.width,
+					child: RaisedButton(
+						onPressed: () {
+							Navigator.pop(
+									context, ListItem(textController.text, DateTime.now()));
+						},
+						child: const Text('Add', style: TextStyle(fontSize: 20)),
+						color: Colors.green,
+					),
+				)),
 					],
 				),
 			),

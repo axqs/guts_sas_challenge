@@ -3,7 +3,7 @@
 library guts_sas_challenge.globals;
 
 import 'ListItem.dart';
-
+import 'FoodItem.dart';
 
 List<ListItem> ShoppingItems;
 //bool isLoggedIn = false;
@@ -14,3 +14,5 @@ class GlobalLists{
 
 }
 */
+
+List<FoodItem> FoodItems;
