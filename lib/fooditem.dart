@@ -10,11 +10,11 @@ class FoodItem{
     
     FoodItem(this.fooditem, this.expiryindays);
 
-    FoodItem.fromJson(Map<String, dynamic> json)
+    FoodItem.fromJson(Map<String, int> json)
         : fooditem = json['fooditem'],
             expiryindays = json['expiryindays']; 
     
-    Map<String, dynamic> toJson() =>
+    Map<String, int> toJson() =>
         {
             'fooditem': fooditem,
             'expiryindays': expiryindays,
