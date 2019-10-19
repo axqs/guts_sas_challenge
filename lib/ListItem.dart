@@ -4,8 +4,9 @@
 class ListItem{
   String title;
   DateTime date;
-
-  ListItem(this.title, this.date);
+  bool selected;
+  
+  ListItem(this.title, this.date, {this.selected=false});
 
   ListItem.fromJson(Map<String, dynamic> json)
       : title = json['title'],
@@ -16,5 +17,4 @@ class ListItem{
         'title': title,
         'date': date.toString(),
       };
-
 }
