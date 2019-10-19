@@ -16,6 +16,7 @@ class _ItemsList extends State<ItemsList> {
     widget.items.removeAt(index);
   }
 
+
   Widget build(BuildContext context) {
     //List<ListItem> items = widget.items;
     return ListView.builder(
