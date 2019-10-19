@@ -43,9 +43,9 @@ class _ListPageState extends State<ListPage> {
 	}
 
 	void moveSelectedItemstoFridge(){
-		for(ListItem item in shoppingItems){
+		for(ListItem item in globals.ShoppingItems){
 			if (item.selected){
-				shoppingItems.remove(item);
+				globals.ShoppingItems.remove(item);
 			}
 		}
 	}
@@ -129,7 +129,7 @@ class _ListPageState extends State<ListPage> {
 				new Expanded(
 				child:ItemsList(
 
-				iitems:globals.ShoppingItems,
+				items:globals.ShoppingItems,
 			)),
 				const SizedBox(height: 30),
 				RaisedButton(
