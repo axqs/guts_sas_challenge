@@ -6,6 +6,7 @@ import 'ListItem.dart';
 import 'FoodItem.dart';
 
 List<ListItem> ShoppingItems;
+List<ListItem> FridgeItems;
 //bool isLoggedIn = false;
 /*
 class GlobalLists{
@@ -16,4 +17,3 @@ class GlobalLists{
 */
 
 List<FoodItem> FoodItems;
-List<ListItem> FridgeItems;
