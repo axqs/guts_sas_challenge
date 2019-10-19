@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+
 import 'ItemsList.dart';
 import 'ListItem.dart';
+import './fridge_page.dart';
+import './list_page.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Grocery List',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
           display1: TextStyle(fontSize: 24.0, fontFamily: 'Hind')
         ),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: "Shopping List"),
     );
   }
 }
