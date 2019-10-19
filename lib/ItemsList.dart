@@ -12,8 +12,7 @@ class ItemsList extends StatefulWidget {
 
 class _ItemsList extends State<ItemsList> {
 
-  FixedExtentScrollController fixedExtentScrollController =
-  new FixedExtentScrollController();
+  FixedExtentScrollController fixedExtentScrollController = new FixedExtentScrollController();
 
   Widget build(BuildContext context) {
     List<ListItem> items = widget.items;
