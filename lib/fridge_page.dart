@@ -3,6 +3,8 @@ import './list_page.dart';
 import 'ListItem.dart';
 import 'ItemsList.dart';
 
+import 'globals.dart' as globals;
+
 class FridgePage extends StatefulWidget {
 	FridgePage({Key key, this.title}) : super(key: key);
 
@@ -16,7 +18,7 @@ class _FridgePageState extends State<FridgePage> {
 	static List<ListItem> fridgeItems = new List<ListItem>();
 
 	void clearAllList(){
-		fridgeItems.clear();
+		globals.FridgeItems.clear();
 	}
 
 	/*
@@ -84,7 +86,7 @@ class _FridgePageState extends State<FridgePage> {
 			children:  <Widget>[
 				new Expanded(
 				child:ItemsList(
-				items:fridgeItems,
+				items:globals.FridgeItems,
 			))])),
 		);
 	}

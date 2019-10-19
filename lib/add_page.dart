@@ -13,10 +13,6 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
-	//Remove this when finished app
-	String LoadedData = await LoadData("./fooditems.json");
-	List<ListItem> foodList = json.decode(LoadedData).map((i) =>
-        ListItem.fromJson(i)).toList();
 
   final TextEditingController textController = new TextEditingController();
   String filter;
@@ -28,6 +24,7 @@ class _AddPageState extends State<AddPage> {
 
 	@override
 	Widget build(BuildContext context) {
+
 		return Scaffold(
 			appBar: AppBar(
 				title: Text(widget.title),
@@ -73,6 +70,7 @@ class _AddPageState extends State<AddPage> {
 							padding: new EdgeInsets.all(20.0),
 
 							child: new TextField(
+								autofocus: true,
 								decoration: new InputDecoration(
 									labelText: "Search Groceries",
 									helperText: "eg. Milk",
@@ -86,22 +84,48 @@ class _AddPageState extends State<AddPage> {
 								width: 100,
 							),
 						),
-						Align(
-							alignment: Alignment.bottomCenter,
-							child:
-								RaisedButton(
-									onPressed: (){
-									Navigator.pop(context, ListItem(textController.text, DateTime.now()));
-								},
-								child: const Text(
-										'Add',
-										style: TextStyle(fontSize: 20)
-								),
-							),
-						),
+			Align(
+				alignment: Alignment.bottomCenter,
+				child: Container(
+					padding: const EdgeInsets.all(8),
+					width: MediaQuery.of(context).size.width,
+					child: RaisedButton(
+						onPressed: () {
+							Navigator.pop(
+									context, ListItem(textController.text, DateTime.now()));
+						},
+						child: const Text('Add', style: TextStyle(fontSize: 20)),
+						color: Colors.green,
+					),
+				)),
 					],
 				),
 			),
 		);
 	}
 }
+
+
+// ... add a datefield to allow people to insert the date, make this field optional
+// and write "this field is optional because we have average expiry dates stored for select items"
+
+/*class BasicDateField extends StatelessWidget {
+  final format = DateFormat("yyyy-MM-dd");
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: <Widget>[
+      Text('Basic date field (${format.pattern})'),
+      DateTimeField(
+        format: format,
+        onShowPicker: (context, currentValue) {
+          return showDatePicker(
+              context: context,
+              firstDate: DateTime(1900),
+              initialDate: currentValue ?? DateTime.now(),
+              lastDate: DateTime(2100));
+        },
+      ),
+    ]);
+  }
+}*/
+

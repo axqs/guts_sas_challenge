@@ -43,9 +43,12 @@ class _ListPageState extends State<ListPage> {
 	}
 
 	void moveSelectedItemstoFridge(){
-		for(ListItem item in shoppingItems){
+		for(ListItem item in List.from(globals.ShoppingItems)){
 			if (item.selected){
-				shoppingItems.remove(item);
+        setState(() {
+          globals.ShoppingItems.remove(item);
+          globals.FridgeItems.add(item);
+        });
 			}
 		}
 	}
@@ -129,14 +132,14 @@ class _ListPageState extends State<ListPage> {
 				new Expanded(
 				child:ItemsList(
 
-				iitems:globals.ShoppingItems,
+				items:globals.ShoppingItems,
 			)),
 				const SizedBox(height: 30),
 				RaisedButton(
 					onPressed: () {
-						setState(() {
+
 							moveSelectedItemstoFridge();
-						});
+
 					},
 					child: const Text(
 							'Move to Fridge',
@@ -151,7 +154,9 @@ class _ListPageState extends State<ListPage> {
 					print("add grocery");
 
 					Navigator.push(context,MaterialPageRoute(builder: (context) => AddPage(title: "Add To List")),).then((itemAdded) => {
-					addItemAndSave(itemAdded)
+					if(itemAdded != null && itemAdded.title != ""){
+						addItemAndSave(itemAdded)
+					}
 					});
 				},
 			), // This trailing comma makes auto-formatting nicer for build methods.
