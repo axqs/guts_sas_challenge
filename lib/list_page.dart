@@ -56,9 +56,21 @@ class _ListPageState extends State<ListPage> {
 					],
 				),
 			),
-			body: ItemsList(
+			body:
+			Container(
+				padding: const EdgeInsets.all(8),
+				child:Column(
+			children:  <Widget>[
+				/*TextField(
+					obscureText: true,
+					decoration: InputDecoration(
+						labelText: 'Add Item',
+					),
+				),*/
+				new Expanded(
+				child:ItemsList(
 				items:shoppingItems,
-			),
+			))])),
 			floatingActionButton: FloatingActionButton(
 				tooltip: 'Increment',
 				child: Icon(Icons.add),
