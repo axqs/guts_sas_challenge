@@ -21,22 +21,22 @@ class ListPage extends StatefulWidget {
 class _ListPageState extends State<ListPage> {
 
 	//Remove this when finished app
-	static List<ListItem> shoppingItems = globals.ShoppingList;
+	//List<ListItem> shoppingItems = globals.ShoppingItems;
 	// = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
 	static bool readFile = false;
 
 	void clearAllList(){
 		setState(() {
-			shoppingItems.clear();
+			globals.ShoppingItems.clear();
 		});
 
 	}
 
 	void addItemAndSave(ListItem itemAdded){
-		shoppingItems.add(itemAdded);
-		SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
-		for(ListItem item in shoppingItems){
+		globals.ShoppingItems.add(itemAdded);
+		SaveAll(jsonEncode(globals.ShoppingItems), "ShoppingList.json");
+		for(ListItem item in globals.ShoppingItems){
 			print(item.title);
 		}
 
@@ -44,16 +44,16 @@ class _ListPageState extends State<ListPage> {
 
 	@override
 	Widget build(BuildContext context) {
-	if(readFile == false) {
+	/*if(readFile == false) {
 		ReadListFromFile("ShoppingList.json").then((loadedListItems) =>
 		{
 			shoppingItems = loadedListItems
 		});
 		print("ReadFile");
 		readFile = true;
-	}
+	}*/
 
-		if(shoppingItems == null) { shoppingItems = new List<ListItem>();}
+		if(globals.ShoppingItems == null) { globals.ShoppingItems = new List<ListItem>();}
 
 
 		return Scaffold(
@@ -120,7 +120,7 @@ class _ListPageState extends State<ListPage> {
 				),*/
 				new Expanded(
 				child:ItemsList(
-				items:shoppingItems,
+				items:globals.ShoppingItems,
 			))])),
 			floatingActionButton: FloatingActionButton(
 				tooltip: 'Increment',
