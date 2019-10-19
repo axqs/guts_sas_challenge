@@ -1,0 +1,39 @@
+fooditems = [
+    
+    {
+        "fooditem": "Butter",
+        "expiryindays": 17,
+    },
+    {
+        "fooditem": "Fresh Apples",
+        "expiryindays": 21,
+    },
+    {
+        "fooditem": "Potatoes",
+        "expiryindays": 28,
+    },
+    {
+        "fooditem": "Cereal",
+        "expiryindays": 155,
+    },
+    {
+        "fooditem": "Frozen Pizza",
+        "expiryindays": 365,
+    },
+    {
+        "fooditem": "Flour",
+        "expiryindays": 217,
+    },
+    {
+        "fooditem": "Fresh Chicken",
+        "expiryindays": 2,
+    },
+    {
+        "fooditem": "Cooked Chicken",
+        "expiryindays": 7,
+    },
+    {
+        "fooditem": "Fresh Onions",
+        "expiryindays": 42,
+    },
+]
