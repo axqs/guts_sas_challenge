@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           display1: TextStyle(fontSize: 24.0, fontFamily: 'Hind')
         ),
       ),
-      home: MyHomePage(title: "Shopping List"),
+      home: ListPage(title: "Shopping List"),
     );
   }
 }

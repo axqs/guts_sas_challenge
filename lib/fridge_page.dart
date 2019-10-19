@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './list_page.dart';
-import './main.dart';
 
 class FridgePage extends StatefulWidget {
 	FridgePage({Key key, this.title}) : super(key: key);
@@ -50,7 +49,7 @@ class _FridgePageState extends State<FridgePage> {
 							title: new Text("Shopping List"),
 							onTap: () {
 								print("tapped list");
-								Navigator.push(context,MaterialPageRoute(builder: (context) => MyHomePage(title: "Shopping List")),);
+								Navigator.push(context,MaterialPageRoute(builder: (context) => ListPage(title: "Shopping List")),);
 							},
 							trailing: new Icon(Icons.arrow_right),
 						),
