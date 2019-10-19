@@ -37,7 +37,7 @@ Future<String> LoadData(String filename) async {
   return contents;
 }
 
-Future<List<FoodItem>> ReadListFromFile(String filename) async {
+Future<List<FoodItem>> ReadListFromFileFoodItem(String filename) async {
   try {
     String LoadedData = await LoadData(filename);
     List<FoodItem> JSONDecodedLoadedData = json.decode(LoadedData).map((i) =>
