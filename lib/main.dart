@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import './fridge_page.dart';
 import './list_page.dart';
 

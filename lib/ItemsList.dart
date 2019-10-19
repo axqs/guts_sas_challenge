@@ -12,22 +12,33 @@ class ItemsList extends StatefulWidget {
 
 class _ItemsList extends State<ItemsList> {
 
-  FixedExtentScrollController fixedExtentScrollController = new FixedExtentScrollController();
+  void removeListItem(index){
+    widget.items.removeAt(index);
+  }
+
 
   Widget build(BuildContext context) {
-    List<ListItem> items = widget.items;
+    //List<ListItem> items = widget.items;
     return ListView.builder(
         physics: BouncingScrollPhysics(),
-        padding: const EdgeInsets.all(8),
-        itemCount: items.length,
+        //padding: const EdgeInsets.all(8),
+        itemCount: widget.items.length,
         itemBuilder: (context, index) {
-          ListItem item = items[index];
+          ListItem item = widget.items[index];
           return ListTile(
               title: Text(
               item.title,
               style: Theme.of(context).textTheme.display1,
           ),
-            trailing: Icon(Icons.delete, size: 24.0),
+            trailing: IconButton(
+                icon: Icon(Icons.delete, size: 24.0),
+                onPressed: () {
+                  setState(() {
+                    removeListItem(index);
+                  });
+                }
+            ),
+            
           );
         }
     );
