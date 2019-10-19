@@ -20,7 +20,8 @@ class ListPage extends StatefulWidget {
 class _ListPageState extends State<ListPage> {
 
 	//Remove this when finished app
-	static List<ListItem> shoppingItems = new List<ListItem>();// = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
+	static List<ListItem> shoppingItems;
+	// = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
 
 	void clearAllList(){
@@ -29,6 +30,7 @@ class _ListPageState extends State<ListPage> {
 
 	@override
 	Widget build(BuildContext context) {
+		if(shoppingItems == null) { shoppingItems = new List<ListItem>();}
 /*
 		ReadListFromFile("ShoppingList.json").then((loadedListItems) => {
 		shoppingItems = loadedListItems
