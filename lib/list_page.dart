@@ -19,7 +19,7 @@ class ListPage extends StatefulWidget {
 class _ListPageState extends State<ListPage> {
 
 	//Remove this when finished app
-	static List<ListItem> shoppingItems;// = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
+	static List<ListItem> shoppingItems = new List<ListItem>();// = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
 	void clearAllList(){
 		shoppingItems.clear();
