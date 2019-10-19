@@ -151,7 +151,9 @@ class _ListPageState extends State<ListPage> {
 					print("add grocery");
 
 					Navigator.push(context,MaterialPageRoute(builder: (context) => AddPage(title: "Add To List")),).then((itemAdded) => {
-					addItemAndSave(itemAdded)
+					if(itemAdded != null){
+						addItemAndSave(itemAdded)
+					}
 					});
 				},
 			), // This trailing comma makes auto-formatting nicer for build methods.

@@ -16,10 +16,6 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
-	//Remove this when finished app
-	String LoadedData = await LoadData("./fooditems.json");
-	List<ListItem> foodList = json.decode(LoadedData).map((i) =>
-        ListItem.fromJson(i)).toList();
 
   final TextEditingController textController = new TextEditingController();
   String filter;
@@ -31,6 +27,7 @@ class _AddPageState extends State<AddPage> {
 
 	@override
 	Widget build(BuildContext context) {
+
 		return Scaffold(
 			appBar: AppBar(
 				title: Text(widget.title),
