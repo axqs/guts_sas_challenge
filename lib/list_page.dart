@@ -17,12 +17,26 @@ class _ListPageState extends State<ListPage> {
 	//Remove this when finished app
 	List<ListItem> shoppingItems = List<ListItem>.generate(20, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
+	void clearAllList(){
+		shoppingItems.clear();
+	}
+
 	@override
 	Widget build(BuildContext context) {
 		return Scaffold(
 			appBar: AppBar(
 				title: Text(widget.title),
-			),
+					actions: <Widget>[
+			IconButton(
+			icon: const Icon(Icons.arrow_forward),
+			tooltip: 'Next choice',
+			onPressed: () {
+				clearAllList();
+			},
+		),
+		]
+
+		),
 			drawer: new Drawer(
 				child: new ListView(
 					children: <Widget>[
