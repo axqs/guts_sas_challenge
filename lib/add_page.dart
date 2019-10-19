@@ -5,11 +5,11 @@ import 'ListItem.dart';
 import 'ItemsList.dart';
 
 class AddPage extends StatefulWidget {
-	AddPage({Key key, this.title}) : super(key: key);
-	final String title;
+  AddPage({Key key, this.title}) : super(key: key);
+  final String title;
 
-	@override
-	_AddPageState createState() => _AddPageState();
+  @override
+  _AddPageState createState() => _AddPageState();
 }
 
 class _AddPageState extends State<AddPage> {
@@ -18,13 +18,13 @@ class _AddPageState extends State<AddPage> {
 	List<ListItem> foodList = json.decode(LoadedData).map((i) =>
         ListItem.fromJson(i)).toList();
 
-	final TextEditingController textController = new TextEditingController();
-	String filter;
+  final TextEditingController textController = new TextEditingController();
+  String filter;
 
-	void dispose() {
-		textController.dispose();
-		super.dispose();
-	}
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
 
 	@override
 	Widget build(BuildContext context) {

@@ -6,6 +6,7 @@ import './add_page.dart';
 import 'ListItem.dart';
 import 'ItemsList.dart';
 
+import 'globals.dart' as globals;
 import 'SaveAndLoad.dart';
 
 class ListPage extends StatefulWidget {
@@ -20,39 +21,47 @@ class ListPage extends StatefulWidget {
 class _ListPageState extends State<ListPage> {
 
 	//Remove this when finished app
-	static List<ListItem> shoppingItems;
+	//List<ListItem> shoppingItems = globals.ShoppingItems;
 	// = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
 	static bool readFile = false;
 
 	void clearAllList(){
 		setState(() {
-			shoppingItems.clear();
+			globals.ShoppingItems.clear();
 		});
 
 	}
 
 	void addItemAndSave(ListItem itemAdded){
-		shoppingItems.add(itemAdded);
-		SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
-		for(ListItem item in shoppingItems){
+		globals.ShoppingItems.add(itemAdded);
+		SaveAll(jsonEncode(globals.ShoppingItems), "ShoppingList.json");
+		for(ListItem item in globals.ShoppingItems){
 			print(item.title);
 		}
 
 	}
 
+	void moveSelectedItemstoFridge(){
+		for(ListItem item in shoppingItems){
+			if (item.selected){
+				shoppingItems.remove(item);
+			}
+		}
+	}
+
 	@override
 	Widget build(BuildContext context) {
-	if(readFile == false) {
+	/*if(readFile == false) {
 		ReadListFromFile("ShoppingList.json").then((loadedListItems) =>
 		{
 			shoppingItems = loadedListItems
 		});
 		print("ReadFile");
 		readFile = true;
-	}
+	}*/
 
-		if(shoppingItems == null) { shoppingItems = new List<ListItem>();}
+		if(globals.ShoppingItems == null) { globals.ShoppingItems = new List<ListItem>();}
 
 
 		return Scaffold(
@@ -60,7 +69,7 @@ class _ListPageState extends State<ListPage> {
 				title: Text(widget.title),
 				actions: <Widget>[
 					IconButton(
-						icon: const Icon(Icons.clear),
+						icon: const Icon(Icons.delete),
 						tooltip: 'Clear all',
 						onPressed: () {
 							clearAllList();
@@ -119,8 +128,22 @@ class _ListPageState extends State<ListPage> {
 				),*/
 				new Expanded(
 				child:ItemsList(
-				items:shoppingItems,
-			))])),
+
+				iitems:globals.ShoppingItems,
+			)),
+				const SizedBox(height: 30),
+				RaisedButton(
+					onPressed: () {
+						setState(() {
+							moveSelectedItemstoFridge();
+						});
+					},
+					child: const Text(
+							'Move to Fridge',
+							style: TextStyle(fontSize: 20)
+					),
+				),
+			])),
 			floatingActionButton: FloatingActionButton(
 				tooltip: 'Increment',
 				child: Icon(Icons.add),
