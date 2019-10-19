@@ -16,6 +16,10 @@ class MyApp extends StatelessWidget {
     {
     globals.ShoppingItems = loadedListItems
     });
+    ReadListFromFile("FridgeList.json").then((loadedListItems) =>
+    {
+      globals.FridgeItems = loadedListItems
+    });
     ReadListFromFileFoodItem("fooditems.json").then((loadedListItems) =>
     {
       globals.FoodItems = loadedListItems

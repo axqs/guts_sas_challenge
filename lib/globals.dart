@@ -16,3 +16,4 @@ class GlobalLists{
 */
 
 List<FoodItem> FoodItems;
+List<ListItem> FridgeItems;
