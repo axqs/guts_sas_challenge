@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import './fridge_page.dart';
 import './add_page.dart';
 import 'ListItem.dart';
 import 'ItemsList.dart';
+
+import 'SaveAndLoad.dart';
 
 class ListPage extends StatefulWidget {
 	ListPage({Key key, this.title}) : super(key: key);
@@ -15,7 +19,7 @@ class ListPage extends StatefulWidget {
 class _ListPageState extends State<ListPage> {
 
 	//Remove this when finished app
-	List<ListItem> shoppingItems = List<ListItem>.generate(20, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
+	List<ListItem> shoppingItems = List<ListItem>.generate(0, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
 
 	void clearAllList(){
 		shoppingItems.clear();
@@ -23,6 +27,11 @@ class _ListPageState extends State<ListPage> {
 
 	@override
 	Widget build(BuildContext context) {
+
+		ReadListFromFile("ShoppingList.json").then((loadedListItems) => {
+		shoppingItems = loadedListItems
+		});
+
 		return Scaffold(
 			appBar: AppBar(
 				title: Text(widget.title),
@@ -50,6 +59,8 @@ class _ListPageState extends State<ListPage> {
 							title: new Text("Shopping List"),
 							onTap: () {
 								print("tapped list");
+								// Save when you switch screen
+								SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
 								Navigator.push(context,MaterialPageRoute(builder: (context) => ListPage(title: "Shopping List")),);
 							},
 							trailing: new Icon(Icons.arrow_right),
@@ -57,6 +68,7 @@ class _ListPageState extends State<ListPage> {
 						new ListTile(
 							title: new Text("Fridge"),
 							onTap: () {
+								SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
 								print("tapped fridge");
 								Navigator.push(context,MaterialPageRoute(builder: (context) => FridgePage(title: "Fridge Page")),);
 							},
