@@ -4,7 +4,7 @@
 class ListItem{
   String title;
   DateTime date;
+  bool selected;
 
-  ListItem(this.title, this.date);
-
+  ListItem(this.title, this.date, {this.selected=false});
 }
