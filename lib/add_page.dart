@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
+import './list_page.dart';
 import './fridge_page.dart';
-import './add_page.dart';
 import 'ListItem.dart';
 import 'ItemsList.dart';
 
-class ListPage extends StatefulWidget {
-	ListPage({Key key, this.title}) : super(key: key);
+class AddPage extends StatefulWidget {
+	AddPage({Key key, this.title}) : super(key: key);
 	final String title;
 
 	@override
-	_ListPageState createState() => _ListPageState();
+	_AddPageState createState() => _AddPageState();
 }
 
-class _ListPageState extends State<ListPage> {
-
+class _AddPageState extends State<AddPage> {
 	//Remove this when finished app
 	List<ListItem> shoppingItems = List<ListItem>.generate(20, (int index) => ListItem("Item "+index.toString(), DateTime.now()));
+
+	final TextEditingController controller = new TextEditingController();
+	String filter;
+
+	void dispose() {
+		controller.dispose();
+		super.dispose();
+	}
 
 	@override
 	Widget build(BuildContext context) {
@@ -57,17 +64,23 @@ class _ListPageState extends State<ListPage> {
 					],
 				),
 			),
-			body: ItemsList(
-				items:shoppingItems,
+			body: Center(
+				child: new Column(
+					children: <Widget>[
+						new Padding(
+							padding: new EdgeInsets.all(20.0),
+
+							child: new TextField(
+								decoration: new InputDecoration(
+									labelText: "Search Groceries",
+									helperText: "eg. Milk",
+								),
+							controller: controller,
+							),
+						),
+					],
+				),
 			),
-			floatingActionButton: FloatingActionButton(
-				tooltip: 'Increment',
-				child: Icon(Icons.add),
-				onPressed: () {
-					print("add grocery");
-					Navigator.push(context,MaterialPageRoute(builder: (context) => AddPage(title: "Add To List")),);
-				},
-			), // This trailing comma makes auto-formatting nicer for build methods.
 		);
 	}
 }
