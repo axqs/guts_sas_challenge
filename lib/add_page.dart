@@ -91,7 +91,7 @@ class _AddPageState extends State<AddPage> {
 						Align(
 							alignment: Alignment.bottomCenter,
 							child:
-							  RaisedButton(
+								RaisedButton(
 									onPressed: (){
 									Navigator.pop(context, ListItem(textController.text, DateTime.now()));
 								},

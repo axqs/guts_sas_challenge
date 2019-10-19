@@ -43,7 +43,6 @@ class _ListPageState extends State<ListPage> {
 
 	@override
 	Widget build(BuildContext context) {
-
 	if(readFile == false) {
 		ReadListFromFile("ShoppingList.json").then((loadedListItems) =>
 		{
@@ -59,17 +58,16 @@ class _ListPageState extends State<ListPage> {
 		return Scaffold(
 			appBar: AppBar(
 				title: Text(widget.title),
-					actions: <Widget>[
-			IconButton(
-			icon: const Icon(Icons.clear),
-			tooltip: 'Clear all',
-			onPressed: () {
-				clearAllList();
-			},
-		),
-		]
-
-		),
+				actions: <Widget>[
+					IconButton(
+						icon: const Icon(Icons.clear),
+						tooltip: 'Clear all',
+						onPressed: () {
+							clearAllList();
+						},
+					),
+				]
+			),
 			drawer: new Drawer(
 				child: new ListView(
 					children: <Widget>[
@@ -84,7 +82,7 @@ class _ListPageState extends State<ListPage> {
 							onTap: () {
 								print("tapped list");
 								// Save when you switch screen
-								SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
+								//SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
 								Navigator.push(context,MaterialPageRoute(builder: (context) => ListPage(title: "Shopping List")),);
 							},
 							trailing: new Icon(Icons.arrow_right),
@@ -92,7 +90,7 @@ class _ListPageState extends State<ListPage> {
 						new ListTile(
 							title: new Text("Fridge"),
 							onTap: () {
-								SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
+								//SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
 								print("tapped fridge");
 								Navigator.push(context,MaterialPageRoute(builder: (context) => FridgePage(title: "Fridge Page")),);
 							},
