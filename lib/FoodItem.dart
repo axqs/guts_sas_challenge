@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-import './list_page.dart';
-import './fridge_page.dart';
-import 'ListItem.dart';
-import 'ItemsList.dart';
 
 class FoodItem{
     String fooditem;
