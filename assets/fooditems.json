@@ -34,5 +34,9 @@
 	{
 		"fooditem": "Onions",
 		"days": 42
+	},
+	{
+		"fooditem": "Milk",
+		"days": 4
 	}
 ]
