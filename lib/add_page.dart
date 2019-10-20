@@ -23,27 +23,29 @@ class AddPage extends StatefulWidget {
 class _AddPageState extends State<AddPage> {
 
 	TextEditingController textController = new TextEditingController();
-	List<FoodItem> duplicate;
+	List<FoodItem> duplicate = globals.FoodItems != null ? List.from(globals.FoodItems): new List<FoodItem>();
 	DateTime dateTimeOfItem = DateTime.now();
 
 	@override
 	void initState(){
-		if( globals.FoodItems != null ){
-			duplicate = globals.FoodItems;
-			super.initState();
+		super.initState();
+		/*if( globals.FoodItems != null ){
+			duplicate = List.from(globals.FoodItems);
+
 		} else {
 			duplicate = new List<FoodItem>();
-		}
+		}*/
 	}
 
 	void filterSearchResults(String query) {
+		duplicate = globals.FoodItems != null ? List.from(globals.FoodItems): new List<FoodItem>();
 		query = query.toLowerCase();
 		List<FoodItem> dummySearchList = List<FoodItem>();
-		dummySearchList = duplicate;
+		dummySearchList = List.from(duplicate);
 		if(query.isNotEmpty) {
 			List<FoodItem> dummyListData = List<FoodItem>();
 			dummySearchList.forEach((i) {
-				if(i.fooditem.toLowerCase().contains(query)) {
+				if(i.fooditem.toLowerCase().contains(query) || query == "") {
 					dummyListData.add(i);
 				}
 			});
