@@ -1,48 +1,34 @@
 import 'package:flutter/material.dart';
-import 'ListItem.dart';
+import 'FoodItem.dart';
 
-class ItemsList extends StatefulWidget {
+class FoodsList extends StatefulWidget {
 
-  final List<ListItem> items;
-  final bool InShopping;
-  const ItemsList({ Key key, this.items, this.InShopping}) : super(key: key);
+  final List<FoodItem> items;
+  const FoodsList({ Key key, this.items, List<FoodItem> selected,}) : super(key: key);
 
   @override
-  _ItemsList createState() => _ItemsList();
+  _FoodsList createState() => _FoodsList();
 }
 
-class _ItemsList extends State<ItemsList> {
+class _FoodsList extends State<FoodsList> {
 
-  void removeListItem(index){
-    widget.items.removeAt(index);
-  }
-
-
+	void removeListItem(index){
+		widget.items.removeAt(index);
+	}
 
   Widget build(BuildContext context) {
-    //List<ListItem> items = widget.items;
+    //List<FoodItem> items = widget.items;
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         //padding: const EdgeInsets.all(8),
         itemCount: widget.items.length,
         itemBuilder: (context, index) {
-          ListItem item = widget.items[index];
+          FoodItem item = widget.items[index];
+
           return ListTile(
-
             leading: IconButton(
-              icon: Icon(
-                widget.InShopping ?
-              (item.selected ?
-                     Icons.check_box :
-                     Icons.check_box_outline_blank) : Icons.brightness_1),
-              color: widget.InShopping ?(
-
-                  item.selected ?
-                    Colors.green :
-                    null
-              ) : (
-                  Colors.red
-              ),
+              icon: Icon(item.selected ? Icons.check_box : Icons.check_box_outline_blank),
+              color: item.selected ? Colors.green : null,
               onPressed: () {
                 setState(() {
                   if (item.selected) {
@@ -54,7 +40,7 @@ class _ItemsList extends State<ItemsList> {
               },
             ),
               title: Text(
-              item.title,
+              item.fooditem,
               style: Theme.of(context).textTheme.display1,
           ),
             trailing: IconButton(
@@ -65,7 +51,7 @@ class _ItemsList extends State<ItemsList> {
                   });
                 }
             ),
-            
+
           );
         }
     );

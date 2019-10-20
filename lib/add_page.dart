@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import './list_page.dart';
 import './fridge_page.dart';
 import 'ListItem.dart';
+import 'FoodItem.dart';
 import 'ItemsList.dart';
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:intl/intl.dart';
+import 'FoodsList.dart';
+import 'globals.dart' as globals;
+import 'SaveAndLoad.dart';
 
 class AddPage extends StatefulWidget {
   AddPage({Key key, this.title}) : super(key: key);
@@ -19,20 +18,43 @@ class AddPage extends StatefulWidget {
 
 class _AddPageState extends State<AddPage> {
 
-  final TextEditingController textController = new TextEditingController();
-  String filter;
-  DateTime dateTimeOfItem = DateTime.now();
+	final TextEditingController textController = new TextEditingController();
+	List<FoodItem> duplicate;
 
-  void dispose() {
-    textController.dispose();
-    super.dispose();
-  }
+	@override
+	void initState(){
+		duplicate.addAll(globals.FoodItems);
+		super.initState();
+	}
+
+	void filterSearchResults(String query) {
+		query = query.toLowerCase();
+		List<FoodItem> dummySearchList = List<FoodItem>();
+		dummySearchList.addAll(duplicate);
+		if(query.isNotEmpty) {
+			List<FoodItem> dummyListData = List<FoodItem>();
+			dummySearchList.forEach((i) {
+				if(i.fooditem.contains(query)) {
+					dummyListData.add(i);
+				}
+			});
+			setState(() {
+				duplicate.clear();
+				duplicate.addAll(dummyListData);
+			});
+			return;
+		} else {
+			setState(() {
+				duplicate.clear();
+				duplicate.addAll(duplicate);
+			});
+		}
+	}
 
 	@override
 	Widget build(BuildContext context) {
-		final dFormat = DateFormat("dd/MM/yyyy");
 
-		return Scaffold(
+		return new Scaffold(
 			appBar: AppBar(
 				title: Text(widget.title),
 			),
@@ -70,91 +92,51 @@ class _AddPageState extends State<AddPage> {
 					],
 				),
 			),
-			body: Center(
-				child: new Column(
+			body: Container(
+				child: Column(
 					children: <Widget>[
-						new Padding(
+						Padding(
 							padding: new EdgeInsets.all(20.0),
-
 							child: new TextField(
-								autofocus: true,
-								decoration: new InputDecoration(
+								onChanged: (value) {
+									filterSearchResults(value);
+								},
+								controller: textController,
+								decoration: InputDecoration(
 									labelText: "Search Groceries",
 									helperText: "eg. Milk",
+									hintText: "Search",
+									prefixIcon: Icon(Icons.search),
 								),
-							controller: textController,
 							),
 						),
-			new Padding(
-				padding: new EdgeInsets.only(left:10.0),
-				//Add a container here to set width
-				child:
-				ListTile(
-
-					title: //<Widget>[
-				//new Flexible(child:
-					Text(
-								dFormat.format(dateTimeOfItem),
-						style: Theme.of(context).textTheme.display1,
-						),
-						trailing: IconButton(
-							icon: Icon(Icons.calendar_today), onPressed: (){
-
-							showDatePicker(
-								context: context,
-								initialDate: DateTime.now(),
-								firstDate: DateTime(DateTime.now().year-1),
-								lastDate: DateTime(2030),
-								builder: (BuildContext context, Widget child) {
-									return Theme(
-										data: ThemeData.light(),
-										child: child,
+						Expanded(
+							child: ListView.builder(
+								shrinkWrap: true,
+								itemCount: duplicate.length,
+								itemBuilder: (context, index) {
+									return ListTile(
+										title: Text('${duplicate[index].fooditem}'),
 									);
 								},
-							).then((dateChosen) => {
-								setState(() {
-									dateTimeOfItem = dateChosen;
-								})
-							});
-						},
-						)
-					,
-				),
-				/* Use a text field next to a calander icon, click the calander icon to bring up a calander.
-				child:DateTimeField(
-							format: dFormat,
-
-							initialValue: DateTime.now(),
-							onShowPicker: (context, currentValue) async {
-								final date = await showDatePicker(
-										context: context,
-										firstDate: DateTime(1900),
-										initialDate: currentValue ?? DateTime.now(),
-										lastDate: DateTime(2100));
-								dateTimeOfItem = date;
-								return date;
-							},
-						),*/
-			),
-						Expanded(
-							child: Container(
-								width: 100,
 							),
 						),
-			Align(
-				alignment: Alignment.bottomCenter,
-				child: Container(
-					padding: const EdgeInsets.all(8),
-					width: MediaQuery.of(context).size.width,
-					child: RaisedButton(
-						onPressed: () {
-							Navigator.pop(
-									context, ListItem(textController.text, dateTimeOfItem));
-						},
-						child: const Text('Add', style: TextStyle(fontSize: 20)),
-						color: Colors.green,
-					),
-				)),
+						Align(
+							alignment: Alignment.bottomCenter,
+							child: Container(
+								padding: const EdgeInsets.all(8),
+								width: MediaQuery.of(context).size.width,
+								child: RaisedButton(
+									onPressed: () {
+										Navigator.pop(
+											context, ListItem(textController.text, DateTime.now())
+										);
+									},
+									child: const Text('Add', style: TextStyle(fontSize: 20)),
+									color: Colors.green,
+								),
+							),
+						),
 					],
 				),
 			),
@@ -185,4 +167,3 @@ class _AddPageState extends State<AddPage> {
     ]);
   }
 }*/
-

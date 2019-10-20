@@ -131,8 +131,8 @@ class _ListPageState extends State<ListPage> {
 				),*/
 				new Expanded(
 				child:ItemsList(
-
 				items:globals.ShoppingItems,
+					InShopping: true ,
 			)),
 				//const SizedBox(height: 30),
 				Container(
