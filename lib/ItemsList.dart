@@ -18,7 +18,7 @@ class _ItemsList extends State<ItemsList> {
   }
 
   bool expired(ListItem item){
-    if(item.date.isBefore(DateTime.now().add(new Duration(days: 1)))){
+    if(item.date.add(new Duration(days: 1)).isBefore(DateTime.now())){
       return true;
     } else {
       return false;
@@ -26,7 +26,7 @@ class _ItemsList extends State<ItemsList> {
   }
 
   bool closeToExpiration(ListItem item){
-    if(item.date.isBefore(DateTime.now().add(new Duration(days: 3)))){
+    if(item.date.subtract(new Duration(days: 3)).isBefore(DateTime.now())){
       return true;
     } else {
       return false;

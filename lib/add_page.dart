@@ -57,7 +57,7 @@ class _AddPageState extends State<AddPage> {
 		} else {
 			setState(() {
 				duplicate.clear();
-				duplicate = duplicate;
+				duplicate = globals.FoodItems;
 			});
 		}
 	}
