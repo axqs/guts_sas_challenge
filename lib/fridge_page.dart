@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import './list_page.dart';
 import 'ListItem.dart';
 import 'ItemsList.dart';
-
 import 'globals.dart' as globals;
+
 
 class FridgePage extends StatefulWidget {
 	FridgePage({Key key, this.title}) : super(key: key);
@@ -89,6 +89,7 @@ class _FridgePageState extends State<FridgePage> {
 				new Expanded(
 				child:ItemsList(
 				items:globals.FridgeItems,
+					InShopping: false,
 			))])),
 		);
 	}
