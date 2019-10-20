@@ -34,12 +34,15 @@ class _ListPageState extends State<ListPage> {
 	}
 
 	void addItemAndSave(ListItem itemAdded){
-		globals.ShoppingItems.add(itemAdded);
-		SaveAll(jsonEncode(globals.ShoppingItems), "ShoppingList.json");
+		setState(() {
+			itemAdded.selected = false;
+			globals.ShoppingItems.add(itemAdded);
+			print('$itemAdded.title was added');
+			SaveItemListData(globals.ShoppingItems, "ShoppingList.json");
+		});
 		for(ListItem item in globals.ShoppingItems){
 			print(item.title);
 		}
-
 	}
 
 	void moveSelectedItemstoFridge(){
@@ -48,6 +51,8 @@ class _ListPageState extends State<ListPage> {
         setState(() {
           globals.ShoppingItems.remove(item);
           globals.FridgeItems.add(item);
+		  SaveItemListData(globals.FridgeItems, "FridgeList.json");
+		  SaveItemListData(globals.ShoppingItems, "ShoppingList.json");
         });
 			}
 		}
@@ -102,8 +107,6 @@ class _ListPageState extends State<ListPage> {
 							title: new Text("Shopping List"),
 							onTap: () {
 								print("tapped list");
-								// Save when you switch screen
-								//SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
 								Navigator.push(context,MaterialPageRoute(builder: (context) => ListPage(title: "Shopping List")),);
 							},
 							trailing: new Icon(Icons.arrow_right),
@@ -111,7 +114,6 @@ class _ListPageState extends State<ListPage> {
 						new ListTile(
 							title: new Text("Fridge"),
 							onTap: () {
-								//SaveAll(jsonEncode(shoppingItems), "ShoppingList.json");
 								print("tapped fridge");
 								Navigator.push(context,MaterialPageRoute(builder: (context) => FridgePage(title: "Fridge Page")),);
 							},
@@ -149,7 +151,7 @@ class _ListPageState extends State<ListPage> {
 						width: MediaQuery.of(context).size.width,
 				child: RaisedButton(
 					onPressed: () {
-							moveSelectedItemstoFridge();
+						moveSelectedItemstoFridge();
 					},
 					child: const Text(
 							'Move to Fridge',

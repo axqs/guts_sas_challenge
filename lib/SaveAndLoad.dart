@@ -14,19 +14,19 @@ Future<String> get _localPath async {
   return directory.path;
 }
 
-Future<File> SaveItemListData(List<ItemsList> items, String filePath){
+Future<File> SaveItemListData(List<ListItem> items, String filePath){
   return SaveAll(jsonEncode(items), filePath);
 }
 
 Future<File> SaveAll(String JSONstring, String filename) async{
   final path = await _localPath;
-  File f = File('$path/$filename.json');
+  File f = File('$path/$filename');
   bool bv = f.existsSync();
   if(bv == false){
       f.create(recursive: true);
     }
   try {
-    return File('$path/$filename.json').writeAsString(JSONstring);
+    return File('$path/$filename').writeAsString(JSONstring);
   }catch(e){
       return null;
   }
@@ -48,14 +48,10 @@ Future<String> LoadData(String filename) async {
 Future<List<FoodItem>> ReadListFromFileFoodItem(String filename) async {
   try {
     String LoadedData = await rootBundle.loadString(filename);
-    print(LoadedData);
     print(json.decode(LoadedData));
-    //List<FoodItem> JSONDecodedLoadedData = json.decode(LoadedData).map((i) => FoodItem.fromJson(i)).toList();
 	List<dynamic> JSONDecodedLoadedData = json.decode(LoadedData).map((i) => FoodItem.fromJson(i)).toList();
-	//List<FoodItem> JSONDecodedLoadedData = new List<FoodItem>();
-	print("ITS WORKING");
+	print("food items working");
 	List<FoodItem> foodItems = JSONDecodedLoadedData.cast<FoodItem>();
-	print(foodItems);
 
     return foodItems;
   }
@@ -69,11 +65,14 @@ Future<List<FoodItem>> ReadListFromFileFoodItem(String filename) async {
 
 Future<List<ListItem>> ReadListFromFile(String filename) async {
   try {
-    String LoadedData = await LoadData(filename);
-    List<ListItem> JSONDecodedLoadedData = json.decode(LoadedData).map((i) =>
-        ListItem.fromJson(i)).toList();
+	final path = await _localPath;
+	String LoadedData = await rootBundle.loadString('$path/$filename');
+	print(json.decode(LoadedData));
+	List<dynamic> JSONDecodedLoadedData = json.decode(LoadedData).map((i) => ListItem.fromJson(i)).toList();
+	print("list items working");
+	List<ListItem> listItems = JSONDecodedLoadedData.cast<ListItem>();
 
-    return JSONDecodedLoadedData;
+	return listItems;
   }
   catch (e) {
     // If encountering an error, return 0.

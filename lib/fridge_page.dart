@@ -3,6 +3,7 @@ import './list_page.dart';
 import 'ListItem.dart';
 import 'ItemsList.dart';
 import 'globals.dart' as globals;
+import 'SaveAndLoad.dart';
 
 
 class FridgePage extends StatefulWidget {
@@ -70,7 +71,6 @@ class _FridgePageState extends State<FridgePage> {
 							onTap: () {
 								print("tapped list");
 								// Save when you switch screen
-								//SaveAll(jsonEncode(fridgeItems), "FridgeList.json");
 								Navigator.push(context,MaterialPageRoute(builder: (context) => ListPage(title: "Shopping List")),);
 							},
 							trailing: new Icon(Icons.arrow_right),
@@ -78,7 +78,6 @@ class _FridgePageState extends State<FridgePage> {
 						new ListTile(
 							title: new Text("Fridge"),
 							onTap: () {
-								//SaveAll(jsonEncode(fridgeItems), "FridgeList.json");
 								print("tapped fridge");
 								Navigator.push(context,MaterialPageRoute(builder: (context) => FridgePage(title: "Fridge Page")),);
 							},
