@@ -30,6 +30,8 @@ class _FridgePageState extends State<FridgePage> {
 	@override
 	Widget build(BuildContext context) {
 
+    globals.FridgeItems.sort((a, b) => a.date.compareTo(b.date));
+
 		return Scaffold(
 			appBar: AppBar(
 				title: Text(widget.title),
