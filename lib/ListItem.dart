@@ -8,6 +8,7 @@ class ListItem{
   
   ListItem(this.title, this.date, {this.selected=false});
 
+
   ListItem.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         date = DateTime.parse(json['date']);
