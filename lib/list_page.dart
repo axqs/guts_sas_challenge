@@ -143,20 +143,26 @@ class _ListPageState extends State<ListPage> {
 				items:globals.ShoppingItems,
 					InShopping: true ,
 			)),
-				const SizedBox(height: 30),
-				RaisedButton(
+				//const SizedBox(height: 30),
+				Container(
+						padding: const EdgeInsets.all(8),
+						width: MediaQuery.of(context).size.width,
+				child: RaisedButton(
 					onPressed: () {
-
 							moveSelectedItemstoFridge();
-
 					},
 					child: const Text(
 							'Move to Fridge',
-							style: TextStyle(fontSize: 20)
+							style: TextStyle(fontSize: 20),
+
 					),
+					color: Colors.green,
+				),
 				),
 			])),
-			floatingActionButton: FloatingActionButton(
+			floatingActionButton: Container(
+				padding: EdgeInsets.only(bottom: 60),
+					child:FloatingActionButton(
 				tooltip: 'Increment',
 				child: Icon(Icons.add),
 				onPressed: () {
@@ -168,7 +174,7 @@ class _ListPageState extends State<ListPage> {
 					}
 					});
 				},
-			), // This trailing comma makes auto-formatting nicer for build methods.
+			)), // This trailing comma makes auto-formatting nicer for build methods.
 		);
 	}
 }

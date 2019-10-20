@@ -20,9 +20,16 @@ Future<File> SaveItemListData(List<ItemsList> items, String filePath){
 
 Future<File> SaveAll(String JSONstring, String filename) async{
   final path = await _localPath;
-
-  // Write the file.
-  return File('$path/$filename.json').writeAsString(JSONstring);
+  File f = File('$path/$filename.json');
+  bool bv = f.existsSync();
+  if(bv == false){
+      f.create(recursive: true);
+    }
+  try {
+    return File('$path/$filename.json').writeAsString(JSONstring);
+  }catch(e){
+      return null;
+  }
 }
 
 Future<String> LoadDataFromLocalFile(String filename) async {
@@ -40,16 +47,25 @@ Future<String> LoadData(String filename) async {
 
 Future<List<FoodItem>> ReadListFromFileFoodItem(String filename) async {
   try {
-  	new File('/assets/test.json').create(recursive:true).then((file)=>{file.writeAsString(jsonEncode(List<ListItem>.generate(20, (int index) => ListItem("Item "+index.toString(), DateTime.now()))))});
-    //String LoadedData = await rootBundle.loadString(filename);
+    //rootBundle.loadString('assets/test.json');
+  	/*new File('C:/Users/rdmen/Desktop/GUTS/test.json').create(recursive:true).then((file)=>{
+  	  file.writeAsString(jsonEncode(List<ListItem>.generate(20, (int index) =>
+          ListItem("Item "+index.toString(), DateTime.now()
+          ))
+      ))
+  	});*/
+    String LoadedData = await rootBundle.loadString(filename);
+    print(LoadedData);
+    print(json.decode(LoadedData));
     //List<FoodItem> JSONDecodedLoadedData = json.decode(LoadedData).map((i) => FoodItem.fromJson(i)).toList();
-	//List<FoodItem> JSONDecodedLoadedData = json.decode(LoadedData).map((i) => print(FoodItem.fromJson(i).fooditem) );
-	List<FoodItem> JSONDecodedLoadedData = new List<FoodItem>();
+	List<dynamic> JSONDecodedLoadedData = json.decode(LoadedData).map((i) => FoodItem.fromJson(i)).toList();
+	//List<FoodItem> JSONDecodedLoadedData = new List<FoodItem>();
 	print("ITS WORKING");
 
-    return JSONDecodedLoadedData;
+    return JSONDecodedLoadedData.cast<FoodItem>();
   }
   catch (e) {
+    print("Failed to load jSON file");
   	print(e.toString());
     // If encountering an error, return 0.
     return new List<FoodItem>();

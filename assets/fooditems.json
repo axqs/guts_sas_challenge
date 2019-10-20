@@ -1,38 +1,38 @@
 [
 	{
 		"fooditem": "Butter",
-		"days": 17,
+		"days": 17
 	},
 	{
 		"fooditem": "Apples",
-		"days": 21,
+		"days": 21
 	},
 	{
 		"fooditem": "Potatoes",
-		"days": 28,
+		"days": 28
 	},
 	{
 		"fooditem": "Cereal",
-		"days": 155,
+		"days": 155
 	},
 	{
 		"fooditem": "Frozen Pizza",
-		"days": 365,
+		"days": 365
 	},
 	{
 		"fooditem": "Flour",
-		"days": 217,
+		"days": 217
 	},
 	{
 		"fooditem": "Raw Chicken",
-		"days": 2,
+		"days": 2
 	},
 	{
 		"fooditem": "Cooked Chicken",
-		"days": 7,
+		"days": 7
 	},
 	{
 		"fooditem": "Onions",
-		"days": 42,
-	},
+		"days": 42
+	}
 ]
