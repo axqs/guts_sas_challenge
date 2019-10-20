@@ -62,6 +62,15 @@ class _AddPageState extends State<AddPage> {
 		}
 	}
 
+	void onTapItem(index){
+		setState(() {
+			textController.text = duplicate[index].fooditem;
+			dateTimeOfItem = DateTime.now().add(new Duration(days: duplicate[index].days));
+		});
+		filterSearchResults(duplicate[index].fooditem);
+
+	}
+
 	@override
 	Widget build(BuildContext context) {
 		final dFormat = DateFormat("dd/MM/yyyy");
@@ -193,15 +202,33 @@ class _AddPageState extends State<AddPage> {
 									return ListTile(
 										title: Text('${duplicate[index].fooditem}'),
 										onTap: (){
-											setState(() {
+											onTapItem(index);
+											/*setState(() {
 												textController.text = duplicate[index].fooditem;
 												dateTimeOfItem = DateTime.now().add(new Duration(days: duplicate[index].days));
 											});
 											filterSearchResults(duplicate[index].fooditem);
-
+*/
 										},
 
-										trailing: Text('${duplicate[index].days} days'),
+										trailing: Container(
+											width: 110,
+
+												child:Row(
+														mainAxisAlignment: MainAxisAlignment.end,
+												children: <Widget>[
+													Text('${duplicate[index].days} days'),
+													IconButton(
+															icon: Icon(Icons.add),
+															onPressed: () {
+																onTapItem(index);
+																setState(() {
+																	globals.FridgeItems.add(ListItem(duplicate[index].fooditem, DateTime.now().add(new Duration(days: duplicate[index].days))));
+																});
+
+															})
+										]
+										))
 									);
 								},
 							),
