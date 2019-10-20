@@ -7,6 +7,7 @@ import 'ItemsList.dart';
 import 'FoodsList.dart';
 import 'globals.dart' as globals;
 import 'SaveAndLoad.dart';
+import  'package:keyboard_actions/keyboard_actions.dart';
 
 class AddPage extends StatefulWidget {
   AddPage({Key key, this.title}) : super(key: key);
@@ -23,8 +24,12 @@ class _AddPageState extends State<AddPage> {
 
 	@override
 	void initState(){
-		duplicate.addAll(globals.FoodItems);
-		super.initState();
+		if( globals.FoodItems == null ){
+			duplicate.addAll(globals.FoodItems);
+			super.initState();
+		} else {
+			duplicate = new List<FoodItem>();
+		}
 	}
 
 	void filterSearchResults(String query) {
@@ -62,9 +67,18 @@ class _AddPageState extends State<AddPage> {
 				child: new ListView(
 					children: <Widget>[
 						DrawerHeader(
-							child: Text("My Shopping List"),
+							child: Text(
+								"My Shopping List",
+								textAlign: TextAlign.center,
+								style: new TextStyle(
+									fontSize: 40.0,
+								),
+							),
 							decoration: BoxDecoration(
-								color: Colors.blue,
+								image: DecorationImage(
+									image: ExactAssetImage('assets/images/notes.png'),
+									fit: BoxFit.cover,
+								),
 							),
 						),
 						new ListTile(

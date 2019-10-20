@@ -84,9 +84,18 @@ class _ListPageState extends State<ListPage> {
 				child: new ListView(
 					children: <Widget>[
 						DrawerHeader(
-							child: Text("My Shopping List"),
+							child: Text(
+								"My Shopping List",
+								textAlign: TextAlign.center,
+								style: new TextStyle(
+									fontSize: 40.0,
+								),
+							),
 							decoration: BoxDecoration(
-								color: Colors.blue,
+								image: DecorationImage(
+									image: ExactAssetImage('assets/images/notes.png'),
+									fit: BoxFit.cover,
+								),
 							),
 						),
 						new ListTile(
