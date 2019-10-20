@@ -19,13 +19,13 @@ class AddPage extends StatefulWidget {
 
 class _AddPageState extends State<AddPage> {
 
-	final TextEditingController textController = new TextEditingController();
+	TextEditingController textController = new TextEditingController();
 	List<FoodItem> duplicate;
 
 	@override
 	void initState(){
-		if( globals.FoodItems == null ){
-			duplicate.addAll(globals.FoodItems);
+		if( globals.FoodItems != null ){
+			duplicate = globals.FoodItems;
 			super.initState();
 		} else {
 			duplicate = new List<FoodItem>();
@@ -35,23 +35,23 @@ class _AddPageState extends State<AddPage> {
 	void filterSearchResults(String query) {
 		query = query.toLowerCase();
 		List<FoodItem> dummySearchList = List<FoodItem>();
-		dummySearchList.addAll(duplicate);
+		dummySearchList = duplicate;
 		if(query.isNotEmpty) {
 			List<FoodItem> dummyListData = List<FoodItem>();
 			dummySearchList.forEach((i) {
-				if(i.fooditem.contains(query)) {
+				if(i.fooditem.toLowerCase().contains(query)) {
 					dummyListData.add(i);
 				}
 			});
 			setState(() {
 				duplicate.clear();
-				duplicate.addAll(dummyListData);
+				duplicate = dummyListData;
 			});
 			return;
 		} else {
 			setState(() {
 				duplicate.clear();
-				duplicate.addAll(duplicate);
+				duplicate = duplicate;
 			});
 		}
 	}
@@ -118,7 +118,7 @@ class _AddPageState extends State<AddPage> {
 								controller: textController,
 								decoration: InputDecoration(
 									labelText: "Search Groceries",
-									helperText: "eg. Milk",
+									helperText: "eg. Flour",
 									hintText: "Search",
 									prefixIcon: Icon(Icons.search),
 								),
