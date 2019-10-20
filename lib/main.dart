@@ -43,7 +43,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: TextTheme(
           display1: TextStyle(fontSize: 24.0, fontFamily: 'Hind')
+
         ),
+          inputDecorationTheme:
+          InputDecorationTheme(border: OutlineInputBorder()),
       ),
       home: ListPage(title: "Shopping List"),
     );

@@ -4,7 +4,8 @@ import 'ListItem.dart';
 class ItemsList extends StatefulWidget {
 
   final List<ListItem> items;
-  const ItemsList({ Key key, this.items, List<ListItem> selected,}) : super(key: key);
+  final bool InShopping;
+  const ItemsList({ Key key, this.items, this.InShopping}) : super(key: key);
 
   @override
   _ItemsList createState() => _ItemsList();
@@ -26,11 +27,22 @@ class _ItemsList extends State<ItemsList> {
         itemCount: widget.items.length,
         itemBuilder: (context, index) {
           ListItem item = widget.items[index];
-
           return ListTile(
+
             leading: IconButton(
-              icon: Icon(item.selected ? Icons.check_box : Icons.check_box_outline_blank),
-              color: item.selected ? Colors.green : null,
+              icon: Icon(
+                widget.InShopping ?
+              (item.selected ?
+                     Icons.check_box :
+                     Icons.check_box_outline_blank) : Icons.brightness_1),
+              color: widget.InShopping ?(
+
+                  item.selected ?
+                    Colors.green :
+                    null
+              ) : (
+                  Colors.red
+              ),
               onPressed: () {
                 setState(() {
                   if (item.selected) {
