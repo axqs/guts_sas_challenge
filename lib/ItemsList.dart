@@ -17,6 +17,22 @@ class _ItemsList extends State<ItemsList> {
     widget.items.removeAt(index);
   }
 
+  bool expired(ListItem item){
+    if(item.date.isBefore(DateTime.now().add(new Duration(days: 1)))){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool closeToExpiration(ListItem item){
+    if(item.date.isBefore(DateTime.now().add(new Duration(days: 3)))){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
 
   Widget build(BuildContext context) {
@@ -40,8 +56,11 @@ class _ItemsList extends State<ItemsList> {
                   item.selected ?
                     Colors.green :
                     null
-              ) : (
-                  Colors.red
+              ) : ( expired(item) ?
+                  Colors.red:
+                    closeToExpiration(item)?
+                      Colors.yellow:
+                        Colors.green
               ),
               onPressed: () {
                 setState(() {

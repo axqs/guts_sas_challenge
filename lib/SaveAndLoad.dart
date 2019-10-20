@@ -47,13 +47,6 @@ Future<String> LoadData(String filename) async {
 
 Future<List<FoodItem>> ReadListFromFileFoodItem(String filename) async {
   try {
-    //rootBundle.loadString('assets/test.json');
-  	/*new File('C:/Users/rdmen/Desktop/GUTS/test.json').create(recursive:true).then((file)=>{
-  	  file.writeAsString(jsonEncode(List<ListItem>.generate(20, (int index) =>
-          ListItem("Item "+index.toString(), DateTime.now()
-          ))
-      ))
-  	});*/
     String LoadedData = await rootBundle.loadString(filename);
     print(LoadedData);
     print(json.decode(LoadedData));
