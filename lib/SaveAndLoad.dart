@@ -19,9 +19,16 @@ Future<File> SaveItemListData(List<ItemsList> items, String filePath){
 
 Future<File> SaveAll(String JSONstring, String filename) async{
   final path = await _localPath;
-
-  // Write the file.
-  return File('$path/$filename.json').writeAsString(JSONstring);
+  File f = File('$path/$filename.json');
+  bool bv = f.existsSync();
+  if(bv == false){
+      f.create(recursive: true);
+    }
+  try {
+    return File('$path/$filename.json').writeAsString(JSONstring);
+  }catch(e){
+      return null;
+  }
 }
 
 Future<String> LoadDataFromLocalFile(String filename) async {
