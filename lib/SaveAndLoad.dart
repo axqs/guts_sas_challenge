@@ -54,8 +54,10 @@ Future<List<FoodItem>> ReadListFromFileFoodItem(String filename) async {
 	List<dynamic> JSONDecodedLoadedData = json.decode(LoadedData).map((i) => FoodItem.fromJson(i)).toList();
 	//List<FoodItem> JSONDecodedLoadedData = new List<FoodItem>();
 	print("ITS WORKING");
+	List<FoodItem> foodItems = JSONDecodedLoadedData.cast<FoodItem>();
+	print(foodItems);
 
-    return JSONDecodedLoadedData.cast<FoodItem>();
+    return foodItems;
   }
   catch (e) {
     print("Failed to load jSON file");
