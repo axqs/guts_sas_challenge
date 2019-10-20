@@ -193,6 +193,7 @@ class _AddPageState extends State<AddPage> {
 												textController.text = duplicate[index].fooditem;
 												dateTimeOfItem = DateTime.now().add(new Duration(days: duplicate[index].days));
 											});
+											filterSearchResults(duplicate[index].fooditem);
 
 										},
 									);
