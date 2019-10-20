@@ -30,12 +30,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
     
-  flutter_launcher_icons: "^0.0.1"
+ # flutter_launcher_icons: "^0.0.1"
 
-flutter_icons:
-    image_path: "icon/icon.png"
-    android: true
-    ios: true
+#flutter_icons:
+ #   image_path: "icon/icon.png"
+ #   android: true
+ #   ios: true
 
 #Then need to run >> flutter pub get
 #            Then >> flutter pub pub run flutter_launcher_icons:main
