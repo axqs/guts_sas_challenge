@@ -188,6 +188,13 @@ class _AddPageState extends State<AddPage> {
 								itemBuilder: (context, index) {
 									return ListTile(
 										title: Text('${duplicate[index].fooditem}'),
+										onTap: (){
+											setState(() {
+												textController.text = duplicate[index].fooditem;
+												dateTimeOfItem = DateTime.now().add(new Duration(days: duplicate[index].days));
+											});
+
+										},
 									);
 								},
 							),
