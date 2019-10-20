@@ -181,8 +181,12 @@ class _AddPageState extends State<AddPage> {
 							},
 						),*/
 						),
+
 						Expanded(
+
 							child: ListView.builder(
+								padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+								//physics: BouncingScrollPhysics(),
 								shrinkWrap: true,
 								itemCount: duplicate.length,
 								itemBuilder: (context, index) {
@@ -196,6 +200,8 @@ class _AddPageState extends State<AddPage> {
 											filterSearchResults(duplicate[index].fooditem);
 
 										},
+
+										trailing: Text('${duplicate[index].days} days'),
 									);
 								},
 							),
