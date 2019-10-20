@@ -6,6 +6,8 @@ import 'ItemsList.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
 
 class AddPage extends StatefulWidget {
   AddPage({Key key, this.title}) : super(key: key);
@@ -19,6 +21,7 @@ class _AddPageState extends State<AddPage> {
 
   final TextEditingController textController = new TextEditingController();
   String filter;
+  DateTime dateTimeOfItem = DateTime.now();
 
   void dispose() {
     textController.dispose();
@@ -27,6 +30,7 @@ class _AddPageState extends State<AddPage> {
 
 	@override
 	Widget build(BuildContext context) {
+		final dFormat = DateFormat("dd/MM/yyyy");
 
 		return Scaffold(
 			appBar: AppBar(
@@ -81,7 +85,57 @@ class _AddPageState extends State<AddPage> {
 							controller: textController,
 							),
 						),
+			new Padding(
+				padding: new EdgeInsets.only(left:10.0),
+				//Add a container here to set width
+				child:
+				ListTile(
 
+					title: //<Widget>[
+				//new Flexible(child:
+					Text(
+								dFormat.format(dateTimeOfItem),
+						style: Theme.of(context).textTheme.display1,
+						),
+						trailing: IconButton(
+							icon: Icon(Icons.calendar_today), onPressed: (){
+
+							showDatePicker(
+								context: context,
+								initialDate: DateTime.now(),
+								firstDate: DateTime(DateTime.now().year-1),
+								lastDate: DateTime(2030),
+								builder: (BuildContext context, Widget child) {
+									return Theme(
+										data: ThemeData.light(),
+										child: child,
+									);
+								},
+							).then((dateChosen) => {
+								setState(() {
+									dateTimeOfItem = dateChosen;
+								})
+							});
+						},
+						)
+					,
+				),
+				/* Use a text field next to a calander icon, click the calander icon to bring up a calander.
+				child:DateTimeField(
+							format: dFormat,
+
+							initialValue: DateTime.now(),
+							onShowPicker: (context, currentValue) async {
+								final date = await showDatePicker(
+										context: context,
+										firstDate: DateTime(1900),
+										initialDate: currentValue ?? DateTime.now(),
+										lastDate: DateTime(2100));
+								dateTimeOfItem = date;
+								return date;
+							},
+						),*/
+			),
 						Expanded(
 							child: Container(
 								width: 100,
@@ -95,7 +149,7 @@ class _AddPageState extends State<AddPage> {
 					child: RaisedButton(
 						onPressed: () {
 							Navigator.pop(
-									context, ListItem(textController.text, DateTime.now()));
+									context, ListItem(textController.text, dateTimeOfItem));
 						},
 						child: const Text('Add', style: TextStyle(fontSize: 20)),
 						color: Colors.green,

@@ -33,15 +33,17 @@ class _FridgePageState extends State<FridgePage> {
 		return Scaffold(
 			appBar: AppBar(
 				title: Text(widget.title),
-				actions: <Widget>[
-					IconButton(
+		/*actions: <Widget>[
+					Dont make this for this in the fridge page
+					 IconButton(
+
 						icon: const Icon(Icons.clear),
 						tooltip: 'Clear all',
 						onPressed: () {
 							clearAllList();
 						},
 					),
-				]
+				]*/
 			),
 			drawer: new Drawer(
 				child: new ListView(
