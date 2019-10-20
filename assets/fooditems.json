@@ -20,6 +20,26 @@
 		"days": 365
 	},
 	{
+		"fooditem": "Blueberries",
+		"days": 7
+	},
+	{
+		"fooditem": "Orange Juice",
+		"days": 10
+	},
+	{
+		"fooditem": "Canned Soup",
+		"days": 548
+	},
+	{
+		"fooditem": "Bakery Bread",
+		"days": 3
+	},
+	{
+		"fooditem": "Peppers",
+		"days": 14
+	},
+	{
 		"fooditem": "Flour",
 		"days": 217
 	},
